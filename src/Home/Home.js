@@ -1,38 +1,41 @@
+import { 
+    Container,
+    makeStyles,
+   
+    } from '@material-ui/core'
 import React from 'react'
 import { useEffect } from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-import MovieListing from '../MovieListing/MovieListing'
-import './Home.css'
-import { v4 } from 'uuid'
-import { FetchAysncMovie, FetchAysncShow, getAllMovies, getAllShows } from '../Redux/movieSlice'
-import ShowListing from '../ShowListing/ShowListing'
+import { useDispatch } from 'react-redux'
+import { FetchAysncAnime, FetchAysncMovie, FetchAysncShow} from '../Redux/movieSlice';
+
+
+
 const Home = () => {
+    // Fetching movies
     const dispatch = useDispatch();
     useEffect(() => {
-        const searchMovies ='Harry';
-        const searchShows = 'Friend'
+        const searchMovies = "twilight";
+        const  searchShows = "friend";
+        const searchAnime = "Haikyuu"
         dispatch(FetchAysncMovie(searchMovies));
         dispatch(FetchAysncShow(searchShows));
+        dispatch(FetchAysncAnime(searchAnime));
+
     }
     ,[dispatch]);
 
-    const movies = useSelector(getAllMovies);
-    const shows = useSelector(getAllShows)
+// MakeStyle from material-UI
+const useStyle =  makeStyles(()=>{
+    return({
+    
+    })
+})
+const classes = useStyle();
+// React-component
     return (
-        <div  className='Home'> 
-        <h1>Movies</h1>
-        <div className='home'>
-       
-            {movies.map((movie)=>(<MovieListing  movie={movie} key={v4()}/>))}
-      
-       </div>
-         <h1>Shows</h1>
-         <div className='home'>
-        
-            {shows.map((show)=>(<ShowListing  show={show} key={v4()}/>))}
-       
-         </div>
-        </div>
+        <>
+        Hello This is Home Page
+        </>
     )
 }
 

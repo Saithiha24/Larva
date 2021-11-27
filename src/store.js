@@ -4,6 +4,6 @@ import movieReducer from './Redux/movieSlice';
 
 export const store = configureStore({
     reducer:{
-        movies: movieReducer,
+        app: movieReducer,
     }
 });
