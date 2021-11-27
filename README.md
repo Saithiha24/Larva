@@ -1,1 +1,3 @@
-I created this WebApp in order to under stand the concept of redux(AsyncThunk) more. 
+I'm developing this app in order to understand the concept of Rect,Material-UI.
+I'm planning to add some Backend stuffs and want to change this to MERN app
+
