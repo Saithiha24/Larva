@@ -12,17 +12,7 @@ import { FetchAysncAnime, FetchAysncMovie, FetchAysncShow} from '../Redux/movieS
 
 const Home = () => {
     // Fetching movies
-    const dispatch = useDispatch();
-    useEffect(() => {
-        const searchMovies = "twilight";
-        const  searchShows = "friend";
-        const searchAnime = "Haikyuu"
-        dispatch(FetchAysncMovie(searchMovies));
-        dispatch(FetchAysncShow(searchShows));
-        dispatch(FetchAysncAnime(searchAnime));
-
-    }
-    ,[dispatch]);
+  
 
 // MakeStyle from material-UI
 const useStyle =  makeStyles(()=>{

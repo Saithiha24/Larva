@@ -6,14 +6,13 @@ import
     List,
     ListItem,
     ListItemText,
-     Divider,
     AppBar,
     Toolbar,
     Container,
 
  } from '@material-ui/core'
 import React from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate,useLocation } from 'react-router';
 
 
 
@@ -30,14 +29,18 @@ const UseStyle = makeStyles((theme)=>{
             width:drawerWidth
         },
         home:{
-            background:"black",
+            background:"gray",
         },
-        appbar:{
-            width:`calc(100%-${drawerWidth}px)`
-        },
+        appBar: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth,
+          },
         toolbarClone:theme.mixins.toolbar,
         listitem:{
             cursor:"pointer"
+        },
+        active:{
+           borderLeft:"5px gray solid" 
         }
      
     }
@@ -45,49 +48,64 @@ const UseStyle = makeStyles((theme)=>{
 const Layout = ({children}) => {
     // classes for makeStyles
     const classes = UseStyle();
-    // router-dom and State
+    // router-dom and hook
     const navigate = useNavigate();
+    const location = useLocation();
     // List of Items in the drawer
    const  CatagoryItems  = [
     {text:"Anime",path:"/component/anime"},
     {text:"Movie",path:"/component/movie"},
     {text:"Show",path:"/component/show"}
-    ]
+    ];
+// function
+
+
+
+    // 
     return (
         <div className={classes.layout}>
          {/* Appbar */}
-        <AppBar className={classes.appbar}
-        color="secondary">
-            <Toolbar>
-                <Typography variant="h4">
-                Larva
-                </Typography>
-            </Toolbar>
-        </AppBar>
+         <AppBar 
+        position="fixed" 
+        className={classes.appBar}
+        elevation={0}
+        color="primary"
+      >
+        <Toolbar>
+          <Typography variant="h5" component="h6">
+              Larva
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
        
         {/* Drawer */}
        <Drawer
-       variant="permanent"
+      variant="permanent"
        archor="left"
        className={classes.drawer}
        classes={{paper:classes.drawerPaper}}
        >
-
+       
         <Toolbar></Toolbar>
+   
         {/* Drawer List Item */}
-        <Divider>
+       
         <List>
       {CatagoryItems.map((item)=>(
           <ListItem key={item.text}
-          className={classes.listitem}
-          onClick={()=>{navigate(item.path)}}
+         
+          className = {location.pathname==item.path ? classes.active : null}
+          onClick={()=>{
+              navigate(item.path);
+            }}
           >
-          <ListItemText primary={item.text} />
+          <ListItemText  className={classes.listitem} primary={item.text} />
       
         </ListItem>
       ))}
         </List>
-        </Divider>
+        
         {/* end of Catagories */}
        </Drawer>
 
