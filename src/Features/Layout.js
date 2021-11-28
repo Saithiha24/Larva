@@ -8,12 +8,11 @@ import
     ListItemText,
     AppBar,
     Toolbar,
-    Container,
+ 
   
 
  } from '@material-ui/core';
  import MenuIcon from '@mui/icons-material/Menu';
-import { sizeHeight } from '@mui/system';
 import React, { useState } from 'react'
 import { useNavigate,useLocation } from 'react-router';
 
@@ -152,8 +151,8 @@ const Layout = ({children}) => {
         <div className={classes.home}>
         <div className={classes.toolbarClone}></div>
         <div className={classes.homeBg}>
-          Welcome to Larva 
-          One stop movies and anime solution to all of the nerds
+          Welcome to Larva,
+          One stop movies and anime solution, to all of the geeks
         </div>
         {children}
         </div>
