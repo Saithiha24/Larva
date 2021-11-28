@@ -24,7 +24,7 @@ const classes = useStyle();
 // React-component
     return (
         <>
-        Hello This is Home Page
+        Hello This is  Home Page
         </>
     )
 }

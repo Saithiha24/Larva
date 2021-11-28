@@ -7,7 +7,19 @@ import Movie from './component/Movies/Movie'
 import Show from './component/Show/Show'
 import Layout from "./Features/Layout"
 export const App = () => {
-    const theme = createTheme();
+    const theme = createTheme({
+        palette: {
+            primary: {
+             main:"#141A25",
+            },
+            secondary:{
+                main:"#88A4DF" 
+            },
+            text:{
+               primary:'#3E4E6D'
+            }
+    },
+});
     return (
         <ThemeProvider theme={theme}>
          <Router>

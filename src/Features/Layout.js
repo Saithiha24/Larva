@@ -9,50 +9,75 @@ import
     AppBar,
     Toolbar,
     Container,
+  
 
- } from '@material-ui/core'
-import React from 'react'
+ } from '@material-ui/core';
+ import MenuIcon from '@mui/icons-material/Menu';
+import { sizeHeight } from '@mui/system';
+import React, { useState } from 'react'
 import { useNavigate,useLocation } from 'react-router';
 
 
 
-const drawerWidth = 240;
+
+
+
+let drawerWidth = 240;
 const UseStyle = makeStyles((theme)=>{
+  
     return {
         layout:{
          display:"flex"
         },
         drawer:{
-            width:drawerWidth
+            width:drawerWidth,
+           
         },
         drawerPaper:{
             width:drawerWidth
         },
-        home:{
-            background:"gray",
+        drawerToolbar: {
+          borderBottom:"1px solid gray"
         },
-        appBar: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-          },
         toolbarClone:theme.mixins.toolbar,
         listitem:{
             cursor:"pointer"
         },
         active:{
-           borderLeft:"5px gray solid" 
-        }
-     
+           borderLeft:`3px solid ${theme.palette.secondary.main}`
+        },
+        drawerMenu:{
+           color:theme.palette.text.primary
+        },
+        home:{
+          background:theme.palette.text.primary,
+          width:"100%"
+        },
+        homeBg:{
+          height:200,
+          backgroundPosition:"center",
+          fontSize:22,
+          display:"flex",
+          justifyContent:"center",
+          alignItems:"center"
+        },
+        appBarMenu:{paddingRight:30}
     }
 });
 const Layout = ({children}) => {
     // classes for makeStyles
     const classes = UseStyle();
+    // Functions
+   const toggleDrawer = ()=>{
+     setmobile(!mobile);
+   }
     // router-dom and hook
     const navigate = useNavigate();
     const location = useLocation();
+    const [mobile,setmobile] = useState(false);
     // List of Items in the drawer
    const  CatagoryItems  = [
+     {text:"Home",path:"/"},
     {text:"Anime",path:"/component/anime"},
     {text:"Movie",path:"/component/movie"},
     {text:"Show",path:"/component/show"}
@@ -69,9 +94,15 @@ const Layout = ({children}) => {
         position="fixed" 
         className={classes.appBar}
         elevation={0}
-        color="primary"
+        color="secondary"
       >
         <Toolbar>
+        <Typography
+          className={classes.appBarMenu}
+          onClick={toggleDrawer}
+          >
+          <MenuIcon />
+          </Typography>
           <Typography variant="h5" component="h6">
               Larva
           </Typography>
@@ -79,23 +110,31 @@ const Layout = ({children}) => {
       </AppBar>
 
        
-        {/* Drawer */}
+        {/* Drawer  Desktop and Laptop */}
        <Drawer
-      variant="permanent"
+      variant="temporary"
        archor="left"
-       className={classes.drawer}
+       className={classes.drawerMobile}
        classes={{paper:classes.drawerPaper}}
+       open={mobile}
        >
-       
-        <Toolbar></Toolbar>
+       {/* Drawer toolbar */}
+        <Toolbar className={classes.drawerToolbar}>
+          <Typography 
+          className={classes.drawerMenu}
+          onClick={toggleDrawer}
+          >
+          <MenuIcon  />
+          </Typography>
+          </Toolbar>
    
-        {/* Drawer List Item */}
+        {/* Drawer/Laptop List Item */}
        
         <List>
       {CatagoryItems.map((item)=>(
           <ListItem key={item.text}
          
-          className = {location.pathname==item.path ? classes.active : null}
+          className = {location.pathname===item.path ? classes.active : null}
           onClick={()=>{
               navigate(item.path);
             }}
@@ -106,14 +145,18 @@ const Layout = ({children}) => {
       ))}
         </List>
         
-        {/* end of Catagories */}
+        {/* end of Drawer/Laptop ListItem */}
        </Drawer>
-
+        
         {/*  Main Content */}
-        <Container className={classes.home}>
+        <div className={classes.home}>
         <div className={classes.toolbarClone}></div>
+        <div className={classes.homeBg}>
+          Welcome to Larva 
+          One stop movies and anime solution to all of the nerds
+        </div>
         {children}
-        </Container>
+        </div>
         
         
         </div>
