@@ -136,6 +136,7 @@ const Layout = ({children}) => {
           className = {location.pathname===item.path ? classes.active : null}
           onClick={()=>{
               navigate(item.path);
+              setmobile(!mobile)
             }}
           >
           <ListItemText  className={classes.listitem} primary={item.text} />
