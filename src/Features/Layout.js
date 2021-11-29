@@ -52,14 +52,7 @@ const UseStyle = makeStyles((theme)=>{
           background:theme.palette.text.primary,
           width:"100%"
         },
-        homeBg:{
-          height:200,
-          backgroundPosition:"center",
-          fontSize:22,
-          display:"flex",
-          justifyContent:"center",
-          alignItems:"center"
-        },
+       
         appBarMenu:{paddingRight:30}
     }
 });
@@ -151,10 +144,6 @@ const Layout = ({children}) => {
         {/*  Main Content */}
         <div className={classes.home}>
         <div className={classes.toolbarClone}></div>
-        <div className={classes.homeBg}>
-          Welcome to Larva,
-          One stop movies and anime solution, to all of the geeks
-        </div>
         {children}
         </div>
         

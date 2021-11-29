@@ -6,6 +6,7 @@ import Anime from './component/Anime/Anime'
 import Movie from './component/Movies/Movie'
 import Show from './component/Show/Show'
 import Layout from "./Features/Layout"
+import AnimeDetail from './component/Anime/AnimeDetail'
 export const App = () => {
     const theme = createTheme({
         palette: {
@@ -26,8 +27,12 @@ export const App = () => {
          <Layout>
             <Routes>
               <Route exact path="/" element={<Home />}/>
+              {/* Anime Pages */}
               <Route exact path="/component/anime" element={<Anime />}/>
+              <Route exact path="/component/anime/:id" element={<AnimeDetail />}/>
+              {/* Movie Pages */}
               <Route exact path="/component/movie" element={<Movie />}/>
+              {/* Show Pages */}
               <Route exact path="/component/Show" element={<Show />}/>
             </Routes> 
             </Layout>
