@@ -11,7 +11,7 @@ import {
      Input
     } from '@material-ui/core'
 import React,{useEffect,useState} from 'react'
-import { FetchAysncAnime, getallAnimes } from '../../Redux/movieSlice';
+import { FetchAysncAnime,  FetchAysncTopAnime,  getallAnimes, getallTopAnimes,  } from '../../Redux/movieSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -46,10 +46,11 @@ const Anime = () => {
     const [searchText, setsearchText] = useState('');
     // Fetching Anime
     useEffect(() => {
-        const searchText="One piece"
-      dispatch(FetchAysncAnime(searchText));
+      dispatch(FetchAysncTopAnime())
         
     }, [dispatch]);
+    // ShowAnime
+    
     // Function
     const submitHandle = (e)=>{
         if(searchText===""){
@@ -61,7 +62,9 @@ const Anime = () => {
 
     const classes = useStyle();
     // useSelector
-    const animes = useSelector(getallAnimes)
+   const animes = useSelector(getallAnimes);
+   const topanimes = useSelector(getallTopAnimes);
+   const showAnimes = animes.length===0 ? topanimes : animes;
     return (
    
         <Container>
@@ -91,16 +94,16 @@ const Anime = () => {
             </form>
             {/* If animes is Null this will not be showed*/}
             <Grid container spacing={3} className={classes.gridContainer}>
-             {animes.map(anime=>(
+             {showAnimes.map(anime=>(
                  <Grid item 
                  key={anime.mal_id}
-                 xl={4}
+                 xl={3}
                  lg={4}
                  md={4}
                  sm={6}
                  xs={12}
                  >
-            <Link to={`component/anime/${anime.mal_id}`} style={{textDecoration:"none"}}>
+            <Link to={`${anime.mal_id}`} style={{textDecoration:"none"}}>
           <Card>
       <CardActionArea>
         <CardMedia
@@ -118,7 +121,8 @@ const Anime = () => {
     </Card>
     </Link>
                  </Grid>
-             ))}
+             ))}  
+             {/* End of animes render */}
             </Grid> 
       
         

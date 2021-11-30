@@ -8,6 +8,8 @@ import
     ListItemText,
     AppBar,
     Toolbar,
+    IconButton,
+    Button,
  
   
 
@@ -52,8 +54,9 @@ const UseStyle = makeStyles((theme)=>{
           background:theme.palette.text.primary,
           width:"100%"
         },
-       
-        appBarMenu:{paddingRight:30}
+       appBarMenu:{
+         marginRight:20
+       }
     }
 });
 const Layout = ({children}) => {
@@ -89,13 +92,13 @@ const Layout = ({children}) => {
         color="secondary"
       >
         <Toolbar>
-        <Typography
+        <IconButton
           className={classes.appBarMenu}
           onClick={toggleDrawer}
           >
           <MenuIcon />
-          </Typography>
-          <Typography variant="h5" component="h6">
+          </IconButton>
+          <Typography variant="h5" component="h6" >
               Larva
           </Typography>
         </Toolbar>
@@ -112,12 +115,13 @@ const Layout = ({children}) => {
        >
        {/* Drawer toolbar */}
         <Toolbar className={classes.drawerToolbar}>
-          <Typography 
+          <IconButton
           className={classes.drawerMenu}
           onClick={toggleDrawer}
           >
+          
           <MenuIcon  />
-          </Typography>
+          </IconButton>
           </Toolbar>
    
         {/* Drawer/Laptop List Item */}
