@@ -1,0 +1,7 @@
+.animeComponent {
+  transition: all ease-in;
+}
+
+.animeComponent:hover {
+  transform: scale(1.1);
+}

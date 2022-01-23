@@ -17,11 +17,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
+import "./anime.css";
 
 const useStyle = makeStyles((theme) => {
   return {
     input: {
       background: "white",
+      paddingLeft: "10px",
     },
     gridContainer: {
       marginTop: 30,
@@ -90,11 +92,16 @@ const Anime = () => {
       {/* If animes is Null this will not be showed*/}
       <Row className="mt-4" style={{ width: "100%" }}>
         {showAnimes.map((anime) => (
-          <Col xs={12} sm={6} md={4} lg={3} xl={2} key={anime.mal_id}>
-            <Link
-              to={`component/anime/${anime.mal_id}`}
-              style={{ textDecoration: "none" }}
-            >
+          <Col
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+            key={anime.mal_id}
+            className="animeComponent"
+          >
+            <Link to={`${anime.mal_id}`} style={{ textDecoration: "none" }}>
               <div>
                 <img src={anime.image_url} alt="cover" width="100%" />
                 <div>

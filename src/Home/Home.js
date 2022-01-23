@@ -1,23 +1,9 @@
-import React,{useEffect} from 'react'
-import AnimeSlide from './AnimeSlide'
-import { useDispatch, useSelector } from 'react-redux';
-import { FetchAysncTopAnime, getallTopAnimes } from '../Redux/movieSlice';
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchAysncTopAnime, getallTopAnimes } from "../Redux/movieSlice";
 
 const Home = () => {
-const dispatch = useDispatch();
-  useEffect(() => {
-  dispatch(FetchAysncTopAnime())
-  }, [dispatch]);
+  return <div>Nothing mate</div>;
+};
 
-
-  const topanimes = useSelector(getallTopAnimes);
-    return (
-        <div>
-            <AnimeSlide  animes={topanimes}/>
-        </div>
-    )
-}
-
-export default Home
-
+export default Home;
