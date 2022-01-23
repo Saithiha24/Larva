@@ -1,42 +1,23 @@
-import { 
-    Container,
-    makeStyles,
-   
-    } from '@material-ui/core'
-import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { FetchAysncAnime, FetchAysncMovie, FetchAysncShow} from '../Redux/movieSlice';
-
+import React,{useEffect} from 'react'
+import AnimeSlide from './AnimeSlide'
+import { useDispatch, useSelector } from 'react-redux';
+import { FetchAysncTopAnime, getallTopAnimes } from '../Redux/movieSlice';
 
 
 const Home = () => {
-    // Fetching movies
-    const dispatch = useDispatch();
-    useEffect(() => {
-        const searchMovies = "twilight";
-        const  searchShows = "friend";
-        const searchAnime = "Haikyuu"
-        dispatch(FetchAysncMovie(searchMovies));
-        dispatch(FetchAysncShow(searchShows));
-        dispatch(FetchAysncAnime(searchAnime));
+const dispatch = useDispatch();
+  useEffect(() => {
+  dispatch(FetchAysncTopAnime())
+  }, [dispatch]);
 
-    }
-    ,[dispatch]);
 
-// MakeStyle from material-UI
-const useStyle =  makeStyles(()=>{
-    return({
-    
-    })
-})
-const classes = useStyle();
-// React-component
+  const topanimes = useSelector(getallTopAnimes);
     return (
-        <>
-        Hello This is Home Page
-        </>
+        <div>
+            <AnimeSlide  animes={topanimes}/>
+        </div>
     )
 }
 
 export default Home
+
