@@ -9,13 +9,13 @@ const AnimeList = ({ showAnimes }) => {
       <Row className="mt-4" style={{ width: "100%" }}>
         {showAnimes.map((anime) => (
           <Col
-            xs={12}
+            xs={6}
             sm={6}
             md={4}
             lg={3}
             xl={2}
             key={anime.mal_id}
-            className="animeComponent"
+            className="animeComponent mt-4 mt-sm-0"
           >
             <Link to={`${anime.mal_id}`} style={{ textDecoration: "none" }}>
               <div>
