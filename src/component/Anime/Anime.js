@@ -7,6 +7,7 @@ import {
   Button,
   Input,
 } from "@material-ui/core";
+
 import React, { useEffect, useState } from "react";
 import {
   FetchAysncAnime,
@@ -15,9 +16,8 @@ import {
   getallTopAnimes,
 } from "../../Redux/movieSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
 import "./anime.css";
+import AnimeList from "./AnimeList";
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -60,7 +60,6 @@ const Anime = () => {
   const animes = useSelector(getallAnimes);
   const topanimes = useSelector(getallTopAnimes);
   const showAnimes = animes.length === 0 ? topanimes : animes;
-  console.log(topanimes);
   return (
     <Container fluid="true">
       {/* BackGround Image*/}
@@ -90,28 +89,7 @@ const Anime = () => {
         </Button>
       </form>
       {/* If animes is Null this will not be showed*/}
-      <Row className="mt-4" style={{ width: "100%" }}>
-        {showAnimes.map((anime) => (
-          <Col
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            xl={2}
-            key={anime.mal_id}
-            className="animeComponent"
-          >
-            <Link to={`${anime.mal_id}`} style={{ textDecoration: "none" }}>
-              <div>
-                <img src={anime.image_url} alt="cover" width="100%" />
-                <div>
-                  <h3 className="text-white">{anime.title}</h3>
-                </div>
-              </div>
-            </Link>
-          </Col>
-        ))}
-      </Row>
+      <AnimeList showAnimes={showAnimes} />
     </Container>
   );
 };

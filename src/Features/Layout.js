@@ -12,7 +12,6 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
-import { Nav } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router";
 
 let drawerWidth = 240;
@@ -84,9 +83,8 @@ const Layout = ({ children }) => {
       >
         <Toolbar className="d-flex justify-content-between align-items-center">
           <IconButton
-            className={classes.appBarMenu}
+            className={`${classes.appBarMenu} d-md-none `}
             onClick={toggleDrawer}
-            className="d-md-none"
           >
             <MenuIcon />
           </IconButton>
