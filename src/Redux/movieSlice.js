@@ -81,7 +81,7 @@ const movieSlice = createSlice({
       return { ...state, shows: payload };
     },
     [FetchAysncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-      return { ...state, moviedetail: payload };
+      return { ...state, movieOrShowdetail: payload };
     },
     // Anime page
     [FetchAysncAnime.fulfilled]: (state, { payload }) => {
@@ -97,7 +97,7 @@ const movieSlice = createSlice({
 });
 // Movies
 export const getAllMovies = (state) => state.app.movies;
-export const getMovieorShowDetail = (state) => state.app.movieorShowdetail;
+export const getMovieorShowDetail = (state) => state.app.movieOrShowdetail;
 // Shows
 export const getAllShows = (state) => state.app.shows;
 // Animes
