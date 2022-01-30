@@ -56,7 +56,6 @@ const Movie = () => {
   const movies = useSelector(getAllMovies);
   return (
     <Container fluid="true">
-      BackGround Image
       <Card>
         <CardActionArea>
           <CardMedia

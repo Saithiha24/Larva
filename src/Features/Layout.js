@@ -44,7 +44,7 @@ const UseStyle = makeStyles((theme) => {
       width: "100%",
     },
     appBarMenu: {
-      marginRight: 20,
+      paddingRight: 20,
     },
     navItmes: {
       backgroundColor: "white",
@@ -78,7 +78,7 @@ const Layout = ({ children }) => {
       <AppBar
         position="fixed"
         className={classes.appBar}
-        elevation={0}
+        elevation={2}
         color="secondary"
       >
         <Toolbar className="d-flex justify-content-between align-items-center">

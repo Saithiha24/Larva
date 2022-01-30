@@ -1,0 +1,7 @@
+.movieComponent {
+  transition: all ease-in;
+}
+
+.movieComponent:hover {
+  transform: scale(1.1);
+}
