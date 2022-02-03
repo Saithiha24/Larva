@@ -37,7 +37,7 @@ const Show = () => {
   const [searchText, setsearchText] = useState("");
   // Fetching Anime
   useEffect(() => {
-    let searchText = "Harry Potter";
+    let searchText = "Friend";
     dispatch(FetchAysncShow(searchText));
   }, [dispatch]);
   // ShowAnime

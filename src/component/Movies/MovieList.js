@@ -6,7 +6,7 @@ import Loading from "../Loading";
 const MovieList = ({ showMovies }) => {
   return (
     <div>
-      {showMovies ? (
+      {showMovies.length !== 0 ? (
         <Row className="mt-4" style={{ width: "100%" }}>
           {showMovies.map((movie) => (
             <Col
@@ -28,7 +28,9 @@ const MovieList = ({ showMovies }) => {
 
                   <img src={movie.Poster} alt="cover" width="100%" />
                   <div>
-                    <p className="text-white">{movie.title}</p>
+                    <p className="text-white">
+                      {movie.Title}({movie.Year})
+                    </p>
                   </div>
                 </div>
               </Link>

@@ -6,7 +6,7 @@ import Loading from "../Loading";
 const MovieList = ({ showShows }) => {
   return (
     <div>
-      {showShows ? (
+      {showShows.length !== 0 ? (
         <Row className="mt-4" style={{ width: "100%" }}>
           {showShows.map((show) => (
             <Col

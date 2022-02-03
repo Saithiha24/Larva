@@ -9,121 +9,121 @@ const Loading = () => {
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
         <Col xs={6} sm={6} md={4} lg={3} xl={2}>
           <Stack spacing={1}>
             <Skeleton variant="rectangular" width={210} height={120} />
-            <Skeleton variant="text" />
+            <Skeleton variant="text" width={210} />
           </Stack>
         </Col>
       </Row>

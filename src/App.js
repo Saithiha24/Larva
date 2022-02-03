@@ -44,6 +44,7 @@ export const App = () => {
             />
             {/* Show Pages */}
             <Route exact path="/component/Show" element={<Show />} />
+            <Route exact path="/component/show/:id" element={<MovieDetail />} />
           </Routes>
         </Layout>
       </Router>

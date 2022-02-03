@@ -68,8 +68,16 @@ const movieSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [FetchAysncMovie.pending]: () => {
-      console.log("......pending");
+    [FetchAysncMovie.pending]: (state) => {
+      return {
+        ...state,
+        movies: [],
+        shows: [],
+        movieOrShowdetail: [],
+        animes: [],
+        animeDetail: [],
+        topanimes: [],
+      };
     },
     [FetchAysncMovie.rejected]: () => {
       console.log("error");
