@@ -8,6 +8,7 @@ import Show from "./component/Show/Show";
 import Layout from "./Features/Layout";
 import AnimeDetail from "./component/Anime/AnimeDetail";
 import MovieDetail from "./component/Movies/Detail";
+import "./App.css";
 export const App = () => {
   const theme = createTheme({
     palette: {

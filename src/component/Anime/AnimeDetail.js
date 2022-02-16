@@ -14,12 +14,13 @@ const AnimeDetail = () => {
     dispatch(FetchAysncAnimeDetail(id));
   }, [dispatch, id]);
   let animeDetail = useSelector(getAnimeDetail);
+  console.log(animeDetail);
   const [watchVideo, setWatchVideo] = useState(false);
 
   return (
     <section>
-      {animeDetail.lenth !== 0 ? (
-        <div className="d-sm-flex py-3">
+      {animeDetail && (
+        <div className="d-sm-flex py-3 ms-2">
           <img
             src={animeDetail.image_url}
             alt="anime logo"
@@ -41,7 +42,9 @@ const AnimeDetail = () => {
               <li>
                 <Button
                   className="text-white"
-                  onClick={() => setWatchVideo(true)}
+                  onClick={() => {
+                    setWatchVideo(true);
+                  }}
                 >
                   <i className="fas fa-video me-2"></i>
                   Watch Video
@@ -56,10 +59,14 @@ const AnimeDetail = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <h1>Loading</h1>
       )}
-      |
+      {watchVideo && (
+        <ReactPlayer
+          url={animeDetail.trailer_url}
+          width="100%"
+          controls="true"
+        />
+      )}
     </section>
   );
 };

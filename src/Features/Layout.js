@@ -78,7 +78,7 @@ const Layout = ({ children }) => {
       <AppBar
         position="fixed"
         className={classes.appBar}
-        elevation={2}
+        elevation={3}
         color="secondary"
       >
         <Toolbar className="d-flex justify-content-between align-items-center">
@@ -88,7 +88,12 @@ const Layout = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" component="h6">
+          <Typography
+            variant="h5"
+            component="h6"
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          >
             Larva
           </Typography>
           <div className="d-none d-md-block">

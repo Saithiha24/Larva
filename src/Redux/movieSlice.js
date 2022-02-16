@@ -1,34 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import animeapi from "../Api/animeapi";
 import { APIKey } from "../Api/apikey";
-import movieapi from "../Api/movieapi";
+import { movieAPI } from "../Api/movieapi";
 
-//Movies fetch from OmDB
-export const FetchAysncMovie = createAsyncThunk(
-  "app/FetchAysncMovie",
-  async (searchText) => {
-    const response = await movieapi.get(
-      `?apikey=${APIKey}&s=${searchText}&typ=movie`
+//Movies fetch from OmDB\
+// Trendiing Movies
+export const FetchAsyncTrendingMovies = createAsyncThunk(
+  "app/fetchAsyncTrendingMovies",
+  async (page) => {
+    const { data } = await movieAPI.get(
+      `/trending/all/day?api_key=${APIKey}&page=${page}`
     );
-    return response.data.Search;
-  }
-);
-export const FetchAysncMovieOrShowDetail = createAsyncThunk(
-  "app/FetchAysncMovieOrShowDetail",
-  async (id) => {
-    const response = await movieapi.get(`?apikey=${APIKey}&i=${id}&Plot=full`);
-    return response.data;
-  }
-);
-
-// Shows
-export const FetchAysncShow = createAsyncThunk(
-  "app/FetchAysncShow",
-  async (searchText) => {
-    const response = await movieapi.get(
-      `?apikey=${APIKey}&s=${searchText}&typ=show`
-    );
-    return response.data.Search;
+    return data;
   }
 );
 
@@ -59,6 +42,7 @@ export const FetchAysncAnimeDetail = createAsyncThunk(
 const movieSlice = createSlice({
   name: "app",
   initialState: {
+    trendingMovie: [],
     movies: [],
     shows: [],
     movieOrShowdetail: [],
@@ -68,9 +52,10 @@ const movieSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [FetchAysncMovie.pending]: (state) => {
+    [FetchAsyncTrendingMovies.pending]: (state) => {
       return {
         ...state,
+        trendingMovies: [],
         movies: [],
         shows: [],
         movieOrShowdetail: [],
@@ -79,17 +64,11 @@ const movieSlice = createSlice({
         topanimes: [],
       };
     },
-    [FetchAysncMovie.rejected]: () => {
+    [FetchAsyncTrendingMovies.rejected]: () => {
       console.log("error");
     },
-    [FetchAysncMovie.fulfilled]: (state, { payload }) => {
-      return { ...state, movies: payload };
-    },
-    [FetchAysncShow.fulfilled]: (state, { payload }) => {
-      return { ...state, shows: payload };
-    },
-    [FetchAysncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-      return { ...state, movieOrShowdetail: payload };
+    [FetchAsyncTrendingMovies.fulfilled]: (state, { payload }) => {
+      return { ...state, trendingMovie: payload };
     },
     // Anime page
     [FetchAysncAnime.fulfilled]: (state, { payload }) => {
@@ -104,10 +83,11 @@ const movieSlice = createSlice({
   },
 });
 // Movies
-export const getAllMovies = (state) => state.app.movies;
-export const getMovieorShowDetail = (state) => state.app.movieOrShowdetail;
+// export const getAllMovies = (state) => state.app.movies;
+// export const getMovieorShowDetail = (state) => state.app.movieOrShowdetail;
+export const getTrendingMovies = (state) => state.app.trendingMovie;
 // Shows
-export const getAllShows = (state) => state.app.shows;
+// export const getAllShows = (state) => state.app.shows;
 // Animes
 export const getallAnimes = (state) => state.app.animes;
 export const getallTopAnimes = (state) => state.app.topanimes;

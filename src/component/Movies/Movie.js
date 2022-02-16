@@ -11,7 +11,10 @@ import "./movie.css";
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { FetchAysncMovie, getAllMovies } from "../../Redux/movieSlice";
+import {
+  FetchAsyncTrendingMovies,
+  getTrendingMovies,
+} from "../../Redux/movieSlice";
 import MovieList from "./MovieList";
 
 const useStyle = makeStyles((theme) => {
@@ -35,25 +38,24 @@ const Movie = () => {
   const dispatch = useDispatch();
   // Hook
   const [searchText, setsearchText] = useState("");
-  // Fetching Anime
+  const [page, setPage] = useState(1);
+  // useSelector
+  const Trendmovies = useSelector(getTrendingMovies);
+  // Fetching Movie
   useEffect(() => {
-    let searchText = "Harry Potter";
-    dispatch(FetchAysncMovie(searchText));
-  }, [dispatch]);
-  // ShowAnime
-
+    dispatch(FetchAsyncTrendingMovies(page));
+    // eslint-disable-next-line
+  }, [dispatch, page]);
   // Function
   const submitHandle = (e) => {
     if (searchText === "") {
       return alert("Please Type Someting in the Box");
     }
     e.preventDefault();
-    dispatch(FetchAysncMovie(searchText));
   };
 
   const classes = useStyle();
-  // useSelector
-  const movies = useSelector(getAllMovies);
+
   return (
     <Container fluid="true">
       <Card>
@@ -76,13 +78,14 @@ const Movie = () => {
           onChange={(e) => {
             setsearchText(e.target.value);
           }}
+          required
         />
         <Button variant="contained" color="secondary" type="submit">
           Search
         </Button>
       </form>
       {/* If animes is Null this will not be showed*/}
-      <MovieList showMovies={movies} />
+      <MovieList showMovies={Trendmovies.results} setPage={setPage} />
     </Container>
   );
 };

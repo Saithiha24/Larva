@@ -21,14 +21,25 @@ const AnimeList = ({ showAnimes }) => {
             >
               <Link to={`${anime.mal_id}`} style={{ textDecoration: "none" }}>
                 <div>
-                  <div className="fixed-top ms-3 text-white">
+                  <div
+                    className="fixed-top ms-3 text-white"
+                    style={{ zIndex: "2" }}
+                  >
                     <Rating name="read-only" readOnly max={1} value={1} />
                     <span>{anime.score}</span>
                   </div>
 
                   <img src={anime.image_url} alt="cover" width="100%" />
                   <div>
-                    <p className="text-white">{anime.title}</p>
+                    <p
+                      style={{
+                        color: "white",
+                        fontWeight: 600,
+                        fontSize: 19,
+                      }}
+                    >
+                      {anime.title}
+                    </p>
                   </div>
                 </div>
               </Link>

@@ -38,12 +38,16 @@ const useStyle = makeStyles((theme) => {
 const Anime = () => {
   // dispatch
   const dispatch = useDispatch();
+  // useSelector
+  let animes = useSelector(getallAnimes);
+  let topanimes = useSelector(getallTopAnimes);
+  let showAnimes = animes.length === 0 ? topanimes : animes;
   // Hook
   const [searchText, setsearchText] = useState("");
   // Fetching Anime
   useEffect(() => {
     dispatch(FetchAysncTopAnime());
-  }, [dispatch]);
+  }, [dispatch, showAnimes, searchText]);
   // ShowAnime
 
   // Function
@@ -56,10 +60,7 @@ const Anime = () => {
   };
 
   const classes = useStyle();
-  // useSelector
-  const animes = useSelector(getallAnimes);
-  const topanimes = useSelector(getallTopAnimes);
-  const showAnimes = animes.length === 0 ? topanimes : animes;
+
   return (
     <Container fluid="true">
       {/* BackGround Image*/}
