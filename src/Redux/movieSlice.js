@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import animeapi from "../Api/animeapi";
 import { APIKey } from "../Api/apikey";
 import { movieAPI } from "../Api/movieapi";
@@ -16,25 +17,19 @@ export const FetchAsyncTrendingMovies = createAsyncThunk(
 );
 
 // Animes Fetch from
-export const FetchAysncAnime = createAsyncThunk(
-  "app/FetchAysncAnime",
-  async (searchText) => {
-    const response = await animeapi.get(`search/anime?q=${searchText}&page=1`);
-    return response.data.results;
-  }
-);
+
 export const FetchAysncTopAnime = createAsyncThunk(
   "app/FetchAysncTopAnime",
-  async () => {
-    const response = await animeapi.get(`top/anime`);
-    return response.data.top;
+  async (page) => {
+    const { data } = await animeapi.get(`/anime?page=${page}`);
+    return data.data;
   }
 );
 export const FetchAysncAnimeDetail = createAsyncThunk(
   "app/FetchAysncAnimeDetail",
   async (id) => {
-    const response = await animeapi.get(`anime/${id}`);
-    return response.data;
+    const { data } = await animeapi.get(`anime/${id}`);
+    return data.data;
   }
 );
 
@@ -59,7 +54,6 @@ const movieSlice = createSlice({
         movies: [],
         shows: [],
         movieOrShowdetail: [],
-        animes: [],
         animeDetail: [],
         topanimes: [],
       };
@@ -71,9 +65,6 @@ const movieSlice = createSlice({
       return { ...state, trendingMovie: payload };
     },
     // Anime page
-    [FetchAysncAnime.fulfilled]: (state, { payload }) => {
-      return { ...state, animes: payload };
-    },
     [FetchAysncTopAnime.fulfilled]: (state, { payload }) => {
       return { ...state, topanimes: payload };
     },
@@ -89,7 +80,6 @@ export const getTrendingMovies = (state) => state.app.trendingMovie;
 // Shows
 // export const getAllShows = (state) => state.app.shows;
 // Animes
-export const getallAnimes = (state) => state.app.animes;
 export const getallTopAnimes = (state) => state.app.topanimes;
 export const getAnimeDetail = (state) => state.app.animeDetail;
 

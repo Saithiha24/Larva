@@ -9,12 +9,7 @@ import {
 } from "@material-ui/core";
 
 import React, { useEffect, useState } from "react";
-import {
-  FetchAysncAnime,
-  FetchAysncTopAnime,
-  getallAnimes,
-  getallTopAnimes,
-} from "../../Redux/movieSlice";
+import { FetchAysncTopAnime, getallTopAnimes } from "../../Redux/movieSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./anime.css";
 import AnimeList from "./AnimeList";
@@ -39,15 +34,17 @@ const Anime = () => {
   // dispatch
   const dispatch = useDispatch();
   // useSelector
-  let animes = useSelector(getallAnimes);
   let topanimes = useSelector(getallTopAnimes);
-  let showAnimes = animes.length === 0 ? topanimes : animes;
+  let showAnimes = topanimes;
+  console.log(showAnimes);
   // Hook
   const [searchText, setsearchText] = useState("");
+  const [page, setPage] = useState(1);
   // Fetching Anime
   useEffect(() => {
-    dispatch(FetchAysncTopAnime());
-  }, [dispatch, showAnimes, searchText]);
+    dispatch(FetchAysncTopAnime(page));
+    return () => (showAnimes = []);
+  }, [dispatch, searchText, page]);
   // ShowAnime
 
   // Function
@@ -56,7 +53,6 @@ const Anime = () => {
       return alert("Please Type Someting in the Box");
     }
     e.preventDefault();
-    dispatch(FetchAysncAnime(searchText));
   };
 
   const classes = useStyle();
@@ -90,7 +86,7 @@ const Anime = () => {
         </Button>
       </form>
       {/* If animes is Null this will not be showed*/}
-      <AnimeList showAnimes={showAnimes} />
+      <AnimeList showAnimes={showAnimes} setPage={setPage} />
     </Container>
   );
 };
