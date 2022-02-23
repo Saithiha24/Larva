@@ -6,10 +6,10 @@ import { img_300 } from "../../Api/movieapi";
 import Loading from "../Loading";
 import CustomPagination from "./CustomPagination";
 
-const MovieList = ({ showMovies, setPage }) => {
+const MovieList = ({ showMovies, setPage, totalPage }) => {
   return (
     <div>
-      {showMovies ? (
+      {showMovies.length !== 0 ? (
         <Row className="mt-4" style={{ width: "100%" }}>
           {showMovies.map((movie) => (
             <Col
@@ -57,7 +57,7 @@ const MovieList = ({ showMovies, setPage }) => {
               </Link>
             </Col>
           ))}
-          <CustomPagination setPage={setPage} />
+          <CustomPagination setPage={setPage} totalPage={totalPage} />
         </Row>
       ) : (
         <Loading />

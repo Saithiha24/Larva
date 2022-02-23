@@ -6,7 +6,7 @@ import Loading from "../Loading";
 import CustomPagination from "./CustomPagination";
 import { v4 } from "uuid";
 
-const AnimeList = ({ showAnimes, setPage }) => {
+const AnimeList = ({ showAnimes, setPage, totalPage }) => {
   return (
     <div>
       {showAnimes.length !== 0 ? (
@@ -51,7 +51,7 @@ const AnimeList = ({ showAnimes, setPage }) => {
       ) : (
         <Loading />
       )}
-      <CustomPagination setPage={setPage} />
+      <CustomPagination setPage={setPage} totalPage={totalPage} />
     </div>
   );
 };

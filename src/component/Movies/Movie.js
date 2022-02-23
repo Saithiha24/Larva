@@ -1,21 +1,12 @@
-import {
-  Container,
-  makeStyles,
-  CardActionArea,
-  CardMedia,
-  Card,
-  Button,
-  Input,
-} from "@material-ui/core";
+import { Container, makeStyles, Button, Input } from "@material-ui/core";
 import "./movie.css";
 import React, { useEffect, useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchAsyncTrendingMovies,
-  getTrendingMovies,
-} from "../../Redux/movieSlice";
 import MovieList from "./MovieList";
+import { Link } from "react-router-dom";
+import { img_300, movieAPI } from "../../Api/movieapi";
+import AliceCarousel from "react-alice-carousel";
+import { APIKey } from "../../Api/apikey";
+import { CircularProgress } from "@mui/material";
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -28,24 +19,46 @@ const useStyle = makeStyles((theme) => {
     },
     form: {
       display: "flex",
-      marginTop: 30,
+      marginTop: 20,
+    },
+    carousel: {
+      height: "50%",
+      display: "flex",
+      alignItems: "center",
+      backgroundImage:
+        "url(https://images.pexels.com/photos/866351/pexels-photo-866351.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
+    },
+    carouselItem: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      cursor: "pointer",
+      textTransform: "uppercase",
+      color: "white",
+      marginTop: 20,
     },
   };
 });
 
 const Movie = () => {
-  // dispatch
-  const dispatch = useDispatch();
   // Hook
   const [searchText, setsearchText] = useState("");
   const [page, setPage] = useState(1);
-  // useSelector
-  const Trendmovies = useSelector(getTrendingMovies);
+  const [Trendmovies, setTrendMovies] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+
   // Fetching Movie
+  const fetchMovie = async (page) => {
+    const { data } = await movieAPI.get(
+      `/discover/movie?api_key=${APIKey}&page=${page}`
+    );
+    setTrendMovies(data.results);
+    setTotalPage(data.total_pages);
+  };
   useEffect(() => {
-    dispatch(FetchAsyncTrendingMovies(page));
-    // eslint-disable-next-line
-  }, [dispatch, page]);
+    fetchMovie(page);
+    return () => setTrendMovies([]);
+  }, [page]);
   // Function
   const submitHandle = (e) => {
     if (searchText === "") {
@@ -53,21 +66,74 @@ const Movie = () => {
     }
     e.preventDefault();
   };
-
+  const responsive = {
+    0: {
+      items: 2,
+    },
+    320: {
+      items: 2,
+    },
+    512: {
+      items: 2,
+    },
+    760: {
+      items: 3,
+    },
+    1040: {
+      items: 6,
+    },
+  };
   const classes = useStyle();
+  let items = Trendmovies.map((movie) => (
+    <Link
+      key={movie.id}
+      to={`movie/${movie.id}`}
+      className={classes.carouselItem}
+    >
+      <img
+        src={
+          movie.poster_path
+            ? `${img_300}${movie.poster_path}`
+            : "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"
+        }
+        alt="cover"
+        height="250"
+      />
+      <span className="text-white" style={{ fontWeight: 600, fontSize: 19 }}>
+        {movie.title || movie.original_name || movie.original_title}
+      </span>
+    </Link>
+  ));
 
   return (
     <Container fluid="true">
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="340"
-            image="https://c4.wallpaperflare.com/wallpaper/855/75/832/arrow-flash-the-flash-gotham-wallpaper-preview.jpg"
-            alt="background-image"
+      <div className={classes.carousel}>
+        {Trendmovies.length !== 0 ? (
+          <AliceCarousel
+            mouseTracking
+            infinite
+            autoPlayInterval={1000}
+            animationDuration={1500}
+            disableDotsControls
+            disableButtonsControls
+            responsive={responsive}
+            items={items}
+            autoPlay
           />
-        </CardActionArea>
-      </Card>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              margin: "30px 0px",
+            }}
+          >
+            <CircularProgress size={140} thickness={1} color="primary" />
+          </div>
+        )}
+      </div>
       {/* background Iamge */}
       <form onSubmit={submitHandle} className={classes.form}>
         <Input
@@ -85,7 +151,11 @@ const Movie = () => {
         </Button>
       </form>
       {/* If animes is Null this will not be showed*/}
-      <MovieList showMovies={Trendmovies.results} setPage={setPage} />
+      <MovieList
+        showMovies={Trendmovies}
+        setPage={setPage}
+        totalPage={totalPage}
+      />
     </Container>
   );
 };

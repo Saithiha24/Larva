@@ -1,5 +1,4 @@
 import { Pagination } from "@mui/material";
-import React from "react";
 
 const CustomPagination = ({ setPage, totalPage }) => {
   return (

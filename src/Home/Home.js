@@ -1,64 +1,85 @@
-import { Container } from "@mui/material";
+import { makeStyles, Typography, Button } from "@material-ui/core";
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const classes = useStyles();
+  const navigate = useNavigate();
   return (
-    <Container style={{ width: "100%", color: "white" }}>
-      <section>
-        <h1 className="d-flex justify-content-center align-items-center">
-          What is Larva
-        </h1>
-        <p className="">
-          Larva is a Lorem Ipsum is simply dummy text of the printing and
-          typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book. It has survived
-          not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in
-          the 1960s with the release of Letraset sheets containing Lorem Ipsum
-          passages, and more recently with desktop publishing software like
-          Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-      </section>
-      <section>
-        <Row>
-          <Col xs={12} sm={6}>
-            <img
-              style={{ width: "100%", height: "100%" }}
-              alt="dbName"
-              src="https://omdb.mathub.io/img/logo-omdb.png"
-            />
-          </Col>
-          <Col xs={12} sm={6} className="pt-0 pt-sm-5">
-            <h3 className="d-flex justify-content-center align-items-center mb-3">
-              <a
-                className="text-decoration-none"
-                href="http://www.omdbapi.com/"
-              >
-                omDb Movie api
-              </a>
-            </h3>
-            <h6 className="d-flex justify-content-center align-items-center">
-              How do I create using omDB movies api
-            </h6>
-            <p className="">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-          </Col>
-        </Row>
-      </section>
-    </Container>
+    <div className={classes.home}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          flexDirection: "column",
+        }}
+      >
+        <Typography variant="h3" className={classes.title}>
+          Larvia
+        </Typography>
+        <div
+          style={{
+            marginTop: 250,
+            width: "100%",
+          }}
+        >
+          <ul
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            {items.map((item) => (
+              <li key={item.text}>
+                <Button
+                  onClick={() => navigate(item.path)}
+                  className={classes.button}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {item.text}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Home;
+const useStyles = makeStyles((theme) => {
+  return {
+    home: {
+      backgroundImage:
+        "url(https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
+      width: "100%",
+      height: "100vh",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+    title: {
+      color: "whitesmoke",
+      fontFamily: "worksan",
+      letterSpacing: 3,
+      fontWeight: 800,
+    },
+    button: {
+      width: 150,
+      height: 50,
+      [theme.breakpoints.down("xs")]: {
+        width: 80,
+        height: 40,
+      },
+    },
+  };
+});
+const items = [
+  { text: "Anime", path: "/component/anime" },
+  { text: "Movie", path: "/component/movie" },
+  { text: "Show", path: "/component/show" },
+];

@@ -7,8 +7,9 @@ import Movie from "./component/Movies/Movie";
 import Show from "./component/Show/Show";
 import Layout from "./Features/Layout";
 import AnimeDetail from "./component/Anime/AnimeDetail";
-import MovieDetail from "./component/Movies/Detail";
+import MovieDetail from "./component/Movies/MovieDetial";
 import "./App.css";
+import ShowDetail from "./component/Show/ShowDetial";
 export const App = () => {
   const theme = createTheme({
     palette: {
@@ -45,7 +46,7 @@ export const App = () => {
             />
             {/* Show Pages */}
             <Route exact path="/component/Show" element={<Show />} />
-            <Route exact path="/component/show/:id" element={<MovieDetail />} />
+            <Route exact path="/component/show/:id" element={<ShowDetail />} />
           </Routes>
         </Layout>
       </Router>
