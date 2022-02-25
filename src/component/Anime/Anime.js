@@ -26,7 +26,8 @@ const useStyle = makeStyles((theme) => {
       display: "flex",
       alignItems: "center",
       backgroundImage:
-        "url(https://images.pexels.com/photos/866351/pexels-photo-866351.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
+        "url(https://images.pexels.com/photos/1171480/pexels-photo-1171480.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
+      backdropFilter: "blur(5px)",
     },
     carouselItem: {
       display: "flex",

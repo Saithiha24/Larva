@@ -47,7 +47,8 @@ const UseStyle = makeStyles((theme) => {
       paddingRight: 20,
     },
     navItmes: {
-      backgroundColor: "white",
+      backgroundColor: theme.palette.text.primary,
+      color: "black",
     },
   };
 });
@@ -92,9 +93,15 @@ const Layout = ({ children }) => {
             variant="h5"
             component="h6"
             onClick={() => navigate("/")}
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              fontWeight: 700,
+              fontFamily: "worksan",
+              letterSpacing: 3,
+              color: "#F7F6F5",
+            }}
           >
-            Larva
+            LRAVIA
           </Typography>
           <div className="d-none d-md-block">
             {CatagoryItems.map((item) => (
@@ -103,6 +110,7 @@ const Layout = ({ children }) => {
                 className={
                   location.pathname === item.path ? classes.navItmes : null
                 }
+                style={{ color: "white", fontWeight: 500, marginRight: 10 }}
                 onClick={() => {
                   navigate(item.path);
                 }}
